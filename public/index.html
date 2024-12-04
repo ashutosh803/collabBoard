@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenBoard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="main-cont">
+    
+  <div class="options-cont">
+    <i class="fa-solid fa-bars"></i>
+    </div>
+  
+    <div class="tools-cont scale-tools ">
+      <div class="pencil-cont">
+        <img src="./Icons/Pencil.svg" class="pencil">
+  
+        <div class="pencil-tool-cont">
+          <div class="pencil-width-cont">
+            <input type="range" min="2" max="10" value="3" class="pencil-width">
+          </div>
+  
+          <div class="pencil-color-cont">
+            <div class="black pencil-color"></div>
+            <div class="red pencil-color"></div>
+            <div class="blue pencil-color"></div>
+          </div>
+        </div>
+  
+      </div>
+      
+      <div class="eraser-cont">
+        <img src="./Icons/Eraser.svg" class="eraser">
+  
+        <div class="eraser-tool-cont">
+          <div class="eraser-width-cont">
+            <input type="range" min="2" max="10" value="3" class="eraser-width">
+          </div>
+        </div>
+  
+      </div>
+  
+      <div>
+        <img src="./Icons/Download.svg" class="download">
+      </div>
+      
+      <div>
+        <img src="./Icons/Upload.svg" class="upload">
+      </div>
+      
+      <div>
+        <img src="./Icons/StickyNote.svg" class="sticky">
+      </div>
+  
+      <div>
+        <img src="./Icons/Undo.svg" class="undo">
+      </div>
+      
+      <div>
+        <img src="./Icons/Redo.svg" class="redo">
+      </div>
+  
+    </div>
+  
+  
+    <canvas></canvas>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    const socket = io({reconnect: false})
+  
+  </script>
+
+  <script src="./script.js" ></script>
+  <script src="./canvas.js" ></script>
+</body>
+</html>
