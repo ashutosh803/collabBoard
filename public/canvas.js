@@ -27,9 +27,7 @@ tool.lineWidth = penWidth
 
 // mousedown -> begin graphics, mousemove -> fill graphics
 
-let isMouseDown = false
-
-canvas.addEventListener("mousedown", (e) => {
+function startDrawing(e){
   isMouseDown = true
 
   let data = {
@@ -37,10 +35,9 @@ canvas.addEventListener("mousedown", (e) => {
     y: e.clientY
   }
   socket.emit("beginPath", data)
+}
 
-})
-
-canvas.addEventListener("mousemove", (e) => {
+function drawCanvas(e){
   if(isMouseDown){
 
     let data = {
@@ -51,9 +48,9 @@ canvas.addEventListener("mousemove", (e) => {
     }
     socket.emit("drawStroke", data)
   }
-})
+}
 
-canvas.addEventListener("mouseup", (e) => {
+function stopDrawing(){
   isMouseDown = false
 
   let url = canvas.toDataURL()
@@ -65,7 +62,19 @@ canvas.addEventListener("mouseup", (e) => {
     track
   }
   socket.emit("undoRedoTrack", data)
-})
+}
+
+let isMouseDown = false
+
+canvas.addEventListener("mousedown", startDrawing)
+canvas.addEventListener("mousemove", drawCanvas)
+canvas.addEventListener("mouseup", stopDrawing)
+
+// Touch events for mobile devices
+canvas.addEventListener("touchstart", startDrawing)
+canvas.addEventListener("touchmove", drawCanvas)
+canvas.addEventListener("touchend", stopDrawing)
+
 
 function beginPath(strokeObj){
   tool.beginPath()
