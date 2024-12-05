@@ -30,19 +30,22 @@ tool.lineWidth = penWidth
 function startDrawing(e){
   isMouseDown = true
 
+  e.preventDefault();
+
   let data = {
-    x: e.clientX,
-    y: e.clientY
+    x: e.touches ? e.touches[0].clientX : e.clientX,
+    y: e.touches ? e.touches[0].clientY : e.clientY
   }
   socket.emit("beginPath", data)
 }
 
 function drawCanvas(e){
   if(isMouseDown){
+    e.preventDefault();
 
     let data = {
-      x: e.clientX,
-      y: e.clientY,
+      x: e.touches ? e.touches[0].clientX : e.clientX,
+      y: e.touches ? e.touches[0].clientY : e.clientY,
       color: eraserFlag ? eraserColor : penColor,
       width: eraserFlag ? eraserWidth : penWidth
     }
@@ -50,7 +53,7 @@ function drawCanvas(e){
   }
 }
 
-function stopDrawing(){
+function stopDrawing(e){
   isMouseDown = false
 
   let url = canvas.toDataURL()
